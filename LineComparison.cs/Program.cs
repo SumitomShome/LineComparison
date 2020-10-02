@@ -3,33 +3,41 @@ namespace LineComparison
 {
     class Program
     {
+        static float CalculateLength(double x1, double y1, double x2, double y2)
+        {
+            float length = (float)Math.Sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)));
+            return length;
+        }
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Line Comparison Computation Program");
-            Console.WriteLine("Enter the coordinates");
-            double x1, y1, x2, y2, length_1, m1, m2, n1, n2, length_2;
-            Console.WriteLine("Enter x coordinate of starting point for the first line");
-            x1 = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Enter y coordinate of the starting point for the first line");
-            y1 = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Enter x coordinate of the ending point for the first line");
-            x2 = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Enter y coordinate of the ending point for the first line");
-            y2 = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Enter x coordinate of the starting point for the second line");
-            m1 = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Enter y coordinate of the starting point for the second line");
-            n1 = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Enter x coordinate of the ending point for the second line");
-            m2 = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Enter y coordinate of the ending point for the second line");
-            n2 = Convert.ToDouble(Console.ReadLine());
-            length_1 = Math.Sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)));
-            Console.WriteLine("The length of the first line is:" + length_1);
-            length_2 = Math.Sqrt(((m2 - m1) * (m2 - m1)) + ((n2 - n1) * (n2 - n1)));
-            Console.WriteLine("The length of the second line is:" + length_2);
+            float[] length = new float[2];
+            for (int i = 0; i <= 1; i++)
+            {
+                double x1 = 0, x2 = 0, y1 = 0, y2 = 0;
+                Console.WriteLine("Enter the coordinates for the line" +(i+1));
+                Console.WriteLine("Enter x coordinate of starting point");
+                x1 = Convert.ToDouble(Console.ReadLine());
+                Console.WriteLine("Enter y coordinate of the starting point");
+                y1 = Convert.ToDouble(Console.ReadLine());
+                Console.WriteLine("Enter x coordinate of the ending point");
+                x2 = Convert.ToDouble(Console.ReadLine());
+                Console.WriteLine("Enter y coordinate of the ending point");
+                y2 = Convert.ToDouble(Console.ReadLine());
+                length[i] = CalculateLength(x1, y1, x2, y2);
+                Console.WriteLine("The length of the line is: " +length[i]);
+            }
+            int x = length[0].CompareTo(length[1]);
+            if (length[0].Equals(length[1]))
+             {
+                Console.WriteLine("The lines are of equal length");
+            }
+            else
+            {
+                Console.WriteLine("The lines are not of equal length");
+            }
             Console.ReadKey();
-
         }
     }
 }
+            
